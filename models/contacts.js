@@ -1,4 +1,3 @@
-const { json } = require('express');
 const fs = require('fs/promises')
 const path = require("path")
 const contactsPath = path.join (__dirname, 'contacts.json');
@@ -6,7 +5,7 @@ const contactsPath = path.join (__dirname, 'contacts.json');
 const { v4: uuidv4 } = require('uuid');
 
 
-const updateContact = async (contacts) => { 
+const renderContact = async (contacts) => { 
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2))
 }
 
@@ -33,7 +32,7 @@ const removeContact = async (id) => {
   }
 
   const [removeContact] = contacts.splice(index, 1);
-  await updateContact(contacts);
+  await renderContact(contacts);
   return removeContact;
 }
 
@@ -42,17 +41,17 @@ const addContact = async ({name, email, phone}) => {
   
   console.log(name);
   const newContact = {
-    id: uuidv4(),//userId, //
+    id: uuidv4(),
     name,
     email,
     phone
   }
   contacts.push(newContact);
-  await updateContact(contacts);
+  await renderContact(contacts);
   return newContact;
 }
 
-const updateContactById = async (id, { name, email, phone }) => {
+const updateContact = async (id, { name, email, phone }) => {
   const contacts = await listContacts();
   const index = contacts.findIndex(item => item.id === id);
 
@@ -67,7 +66,7 @@ const updateContactById = async (id, { name, email, phone }) => {
     phone
 };
 
-await updateContact(contacts);
+await renderContact(contacts);
 return contacts[index];
 }
 
@@ -77,5 +76,5 @@ module.exports = {
   getContactById,
   removeContact,
   addContact,
-  updateContactById,
+  updateContact,
 }

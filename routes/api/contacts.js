@@ -68,7 +68,7 @@ router.put('/:contactId', async (req, res, next) => {
     }
     
     const { contactId } = req.params;
-      const result = await contacts.updateContactById(contactId, req.body );
+      const result = await contacts.updateContact(contactId, req.body );
 
       if (!result) {
         throw createError(404);
