@@ -6,6 +6,7 @@ const { contactSchema } = require('../../schemas');
 
 const router = express.Router()
 
+
 router.get('/', async (req, res, next) => {
   try {
     const result = await contacts.listContacts();
@@ -33,7 +34,7 @@ router.post('/', async (req, res, next) => {
     const {error} = contactSchema(req.body);
     
     if (error) {
-      throw createError(404, "missing required name")
+      throw createError(404, "missing required name field")
     }
     const result = await contacts.addContact(req.body);
     res.status(201).send(result)

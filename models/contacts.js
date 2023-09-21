@@ -3,8 +3,7 @@ const fs = require('fs/promises')
 const path = require("path")
 const contactsPath = path.join (__dirname, 'contacts.json');
 
-// const { v4: uuidv4 } = require('uuid');
-import { nanoid } from 'nanoid'
+const { v4: uuidv4 } = require('uuid');
 
 
 const updateContact = async (contacts) => { 
@@ -40,8 +39,10 @@ const removeContact = async (id) => {
 
 const addContact = async ({name, email, phone}) => {
   const contacts = await listContacts();
+  
+  console.log(name);
   const newContact = {
-    id: nanoid(),
+    id: uuidv4(),//userId, //
     name,
     email,
     phone
