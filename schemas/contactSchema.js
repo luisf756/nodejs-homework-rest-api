@@ -1,14 +1,14 @@
-const Joi = require('joi');
+// const Joi = require('joi');
 
-const contactSchema = (data) =>
-{
-    const JoiSchema = Joi.object({
-      name: Joi.string().required(),
-      email: Joi.string().required(),
-      phone: Joi.string().required()
-    })
+// const contactSchema = (data) =>
+// {
+//     const JoiSchema = Joi.object({
+//       name: Joi.string().required(),
+//       email: Joi.string().required(),
+//       phone: Joi.string().required()
+//     })
   
-    return JoiSchema.validate(data)
-}
+//     return JoiSchema.validate(data)
+// }
 
-module.exports = contactSchema;
+// module.exports = contactSchema;
