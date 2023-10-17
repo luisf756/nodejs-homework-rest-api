@@ -23,13 +23,20 @@ const login = async (req, res) => {
         throw createError(401, 'Email or password is wrong')
     }
     const payload = {
-        id: user._id
+        id: user._id,
+        subscription: user.subscription
     }
 
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' })
+    //const result= await User.findById(user._id)
     await User.findByIdAndUpdate(user._id, { token });
     res.json({
-        email,
+        // status: 'success',
+        // code: 200,
+        // user: {
+        //     email: result.email,
+        //     subscription: result.subscription,
+        // },
         token,
     });
 }
