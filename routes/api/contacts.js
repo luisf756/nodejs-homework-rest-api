@@ -20,7 +20,6 @@ router.put('/:contactId', auth, ctrlWrapper(ctrl.updateContactById));
 
 router.patch('/:contactId/favorite', auth, ctrlWrapper(ctrl.updateStatus));
 
-module.exports = router;
-
+router.get('/', auth, ctrlWrapper(ctrl.getAllFavContacts));
 
 module.exports = router;
