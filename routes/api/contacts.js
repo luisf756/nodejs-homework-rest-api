@@ -8,7 +8,8 @@ const { ctrlWrapper } = require(`${basedir}/helpers`);
 
 const router = express.Router()
 
-router.get('/', auth, ctrlWrapper(ctrl.getAllContacts));
+const { auth } = require(`${basedir}/middlewares`);
+
 
 router.get('/:contactId', auth, ctrlWrapper(ctrl.getContactById));
 
@@ -21,5 +22,7 @@ router.put('/:contactId', auth, ctrlWrapper(ctrl.updateContactById));
 router.patch('/:contactId/favorite', auth, ctrlWrapper(ctrl.updateStatus));
 
 router.get('/', auth, ctrlWrapper(ctrl.getAllFavContacts));
+// router.get('/', auth, ctrlWrapper(ctrl.getAllContacts));
+router.get('/fav', auth, ctrlWrapper(ctrl.getAllContacts));
 
 module.exports = router;
