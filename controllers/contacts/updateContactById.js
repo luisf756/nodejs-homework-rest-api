@@ -3,7 +3,7 @@ const { Contact, schemas } = require(`${basedir}/models/contact`);
 const { createError } = require(`${basedir}/helpers`);
 
 const updateContactById = async (req, res) => {
-  // Preventing lack of necessary data
+  
   const { error } = schemas.add.validate(req.body);
   if (error) {
     throw createError(400, "missing fields");
